@@ -8,6 +8,17 @@
           <v-img :src="game.image" height="200" cover></v-img>
           <v-card-title>{{ game.title }}</v-card-title>
           <v-card-subtitle>{{ game.genre }} • {{ game.year }}</v-card-subtitle>
+          
+          <v-card-actions>
+            <v-btn color="primary" @click.stop="goToDetail(game.id)">Подробнее</v-btn>
+            <v-btn 
+              icon 
+              :color="isFavorite(game.id) ? 'error' : 'grey'"
+              @click.stop="toggleFavorite(game.id)"
+            >
+              ❤️
+            </v-btn>
+          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
@@ -15,26 +26,27 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   data() {
-    return {
-      search: '',
-      games: [
-        { id: 1, title: "The Witcher 3", genre: "RPG", year: 2015, image: "https://picsum.photos/id/1015/800/400" },
-        { id: 2, title: "Cyberpunk 2077", genre: "Action RPG", year: 2020, image: "https://picsum.photos/id/201/800/400" },
-        { id: 3, title: "Elden Ring", genre: "Action", year: 2022, image: "https://picsum.photos/id/237/800/400" },
-        { id: 4, title: "Baldur's Gate 3", genre: "RPG", year: 2023, image: "https://picsum.photos/id/180/800/400" }
-      ]
-    }
+    return { search: '' }
   },
   computed: {
+    ...mapGetters(['favoriteGames']),
     filteredGames() {
-      return this.games.filter(g => g.title.toLowerCase().includes(this.search.toLowerCase()))
+      return this.$store.state.games.filter(game =>
+        game.title.toLowerCase().includes(this.search.toLowerCase())
+      )
     }
   },
   methods: {
+    ...mapActions(['toggleFavorite']),
     goToDetail(id) {
       this.$router.push(`/games/${id}`)
+    },
+    isFavorite(id) {
+      return this.favoriteGames.some(game => game.id === id)
     }
   }
 }

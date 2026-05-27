@@ -5,6 +5,7 @@
       <v-spacer></v-spacer>
       <v-btn text to="/">Главная</v-btn>
       <v-btn text to="/games">Каталог</v-btn>
+      <v-btn text to="/favorites">❤️ Избранное</v-btn>
       <v-btn text to="/about">О нас</v-btn>
     </v-app-bar>
 
