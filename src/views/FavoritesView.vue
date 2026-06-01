@@ -2,8 +2,12 @@
   <v-container>
     <v-row justify="center" class="mb-8">
       <v-col cols="12" md="10">
-        <h1 class="text-h3 mb-6">❤️ Избранные игры</h1>
-        <p v-if="favoriteGames.length === 0" class="text-h6">Пока нет избранных игр</p>
+        <h1 class="text-h3 mb-6">❤️ {{ $t('favorites.title') }}</h1>
+<p v-if="favoriteGames.length === 0" class="text-h6">{{ $t('favorites.empty') }}</p>
+
+<v-btn color="error" @click.stop="toggleFavorite(game.id)">
+  {{ $t('games.removeFavorite') }}
+</v-btn>
       </v-col>
     </v-row>
 
@@ -14,7 +18,9 @@
           <v-card-title>{{ game.title }}</v-card-title>
           <v-card-subtitle>{{ game.genre }} • {{ game.year }}</v-card-subtitle>
           <v-card-actions>
-            <v-btn color="error" @click.stop="toggleFavorite(game.id)">Удалить из избранного</v-btn>
+            <v-btn color="error" @click.stop="toggleFavorite(game.id)">
+              {{ $t('games.removeFavorite') }}
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

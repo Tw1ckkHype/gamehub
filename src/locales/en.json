@@ -1,0 +1,28 @@
+{
+  "nav": {
+    "home": "Home",
+    "catalog": "Catalog",
+    "favorites": "Favorites",
+    "about": "About"
+  },
+  "home": {
+    "title": "Welcome to GameHub",
+    "subtitle": "The best video games catalog of all time",
+    "button": "Go to Catalog"
+  },
+  "games": {
+    "search": "Search games",
+    "detail": "Details",
+    "addFavorite": "Add to favorites",
+    "removeFavorite": "Remove from favorites"
+  },
+  "favorites": {
+    "title": "Favorite Games",
+    "empty": "No favorite games yet"
+  },
+  "common": {
+    "back": "Back",
+    "close": "Close",
+    "footer": "The best video games catalog"
+  }
+}

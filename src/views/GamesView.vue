@@ -1,6 +1,15 @@
 <template>
   <v-container>
-    <v-text-field v-model="search" label="Поиск игр" prepend-icon="mdi-magnify" class="mb-6"></v-text-field>
+    <v-text-field 
+  v-model="search" 
+  :label="$t('games.search')" 
+  prepend-icon="mdi-magnify" 
+  class="mb-6"
+></v-text-field>
+
+<v-btn color="primary" @click.stop="goToDetail(game.id)">
+  {{ $t('games.detail') }}
+</v-btn>
 
     <v-row>
       <v-col v-for="game in filteredGames" :key="game.id" cols="12" sm="6" md="4">
@@ -10,7 +19,7 @@
           <v-card-subtitle>{{ game.genre }} • {{ game.year }}</v-card-subtitle>
           
           <v-card-actions>
-            <v-btn color="primary" @click.stop="goToDetail(game.id)">Подробнее</v-btn>
+            <v-btn color="primary" @click.stop="goToDetail(game.id)">{{ $t('games.detail') }}</v-btn>
             <v-btn 
               icon 
               :color="isFavorite(game.id) ? 'error' : 'grey'"
